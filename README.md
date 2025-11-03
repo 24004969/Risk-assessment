@@ -1,4 +1,4 @@
-## NMAE: Ajay 
+## NAME: Ajay 
 ## REG NO:212224110003
 # EX - 5 Asset-Oriented Risk Assessment Of Storage Assets In AWS And Azure
 
