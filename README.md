@@ -103,3 +103,4 @@ Use the following **CIA-based asset-oriented checklist** for each asset:
 ---
 
 ## Result
+All active cloud storage assets across AWS and Azure have been identified and assessed for security posture based on CIA principles, access control, encryption, and risk level.
