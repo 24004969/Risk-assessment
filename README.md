@@ -2,88 +2,104 @@
 ## REG NO:212224110003
 # EX - 5 Asset-Oriented Risk Assessment Of Storage Assets In AWS And Azure
 
----
-
 ## Aim
-
-To assess the risks associated with storage assets in AWS and Azure using an asset-oriented approach by identifying vulnerabilities, threats, and implementing appropriate mitigation strategies.
+To perform an asset-oriented risk assessment of cloud storage assets including:
+- AWS Elastic Block Store (EBS)
+- AWS Elastic File System (EFS)
+- Azure Files (File Storage)
 
 ---
 
-## Algorithm
+## Pre-requisites
 
-1. Identify storage assets in AWS (e.g., S3, EBS) and Azure (e.g., Blob Storage, Disk Storage).
-2. Classify assets based on criticality and sensitivity.
-3. Identify potential threats (data breach, unauthorized access, etc.).
-4. Identify vulnerabilities (e.g., misconfigured permissions, weak encryption).
-5. Assess the risk by calculating likelihood and impact.
-6. Prioritize risks based on their severity.
-7. Apply appropriate security controls and mitigation strategies.
-8. Document and review the risk assessment report.
+### 1. Background
+Cloud storage services offer flexible, scalable options for storing data. However, each storage type brings distinct security risks and configurations. This experiment focuses on identifying assets and performing a detailed risk assessment based on:
+- Confidentiality, Integrity, and Availability (CIA)
+- Access control
+- Encryption
+- Auditing capabilities
+
+### 2. Tools Required
+- AWS Console with EC2, EBS, and EFS access  
+- Azure Portal with Storage Account access  
+- IAM credentials with sufficient permissions  
+- Risk Assessment Template (provided)  
+- Internet browser  
+- Microsoft Excel or Google Sheets for tabulating findings
 
 ---
 
 ## Procedure
 
-### 1. Identify Storage Assets
+### Part A: Identifying AWS Storage Assets
 
-- *AWS*: Amazon S3 buckets, EBS volumes, RDS snapshots.
-- *Azure*: Azure Blob Storage, Azure Files, Disk Storage.
+#### Step 1: Login to AWS Console
+- Go to: [https://aws.amazon.com/console](https://aws.amazon.com/console)  
+- Log in using IAM or root credentials
 
-### 2. Classify Assets
+#### Step 2: Identify EBS Volumes
+- Navigate to: `EC2 > Volumes (under Elastic Block Store)`
+- Record the following:
+  - Volume ID
+  - Size and Type (e.g., gp2, io1)
+  - Availability Zone
+  - Attached instance (if any)
+  - Encryption status
+  - Tags
 
-- Label assets as public, private, or confidential based on sensitivity.
-- Determine business impact if the asset is compromised.
-
-### 3. Identify Threats
-
-- Examples include:
-  - Data breaches
-  - Insider threats
-  - Ransomware
-  - Misconfigured permissions
-
-### 4. Identify Vulnerabilities
-
-- Publicly exposed storage buckets
-- Lack of encryption
-- Weak IAM policies
-- No backup or versioning
-
-### 5. Risk Assessment
-
-- Use a risk matrix to evaluate each asset:
-  - *Likelihood*: Low, Medium, High
-  - *Impact*: Low, Medium, High
-  - *Risk = Likelihood × Impact*
-
-### 6. Prioritize Risks
-
-- Assign risk levels: Critical, High, Medium, Low.
-- Focus on high-risk and critical items first.
-
-### 7. Apply Controls
-
-- Enable encryption (at rest and in transit).
-- Apply least privilege access.
-- Enable logging and monitoring (CloudTrail, Azure Monitor).
-- Regularly audit permissions and configurations.
-
-### 8. Document and Review
-
-- Maintain a record of assets, risks, controls applied.
-- Schedule periodic reviews and updates.
+#### Step 3: Identify EFS File Systems
+- Go to: `EFS > File systems`
+- Record:
+  - File system ID and name
+  - Mount targets (AZs)
+  - Throughput mode (bursting/provisioned)
+  - Performance mode
+  - Lifecycle policy
+  - Encryption at rest status
 
 ---
 
-## Outcome
+### Part B: Identifying Azure File Storage Assets
 
-- Identified storage assets in AWS and Azure.
-- Evaluated threats, vulnerabilities, and risks associated with each asset.
-- Applied appropriate risk mitigation strategies.
+#### Step 4: Login to Azure Portal
+- Go to: [https://portal.azure.com](https://portal.azure.com)
+- Log in using credentials with access to storage accounts
+
+#### Step 5: View File Shares
+- Navigate to: `Storage Accounts > Choose Account > File Shares`
+- Record:
+  - Name
+  - Quota (in GB)
+  - Used space
+  - Protocol (SMB/NFS)
+  - Authentication method (SAS Tokens, Azure AD, Shared Keys)
+  - Snapshot policies
+
+---
+
+## Risk Assessment Methodology
+
+Use the following **CIA-based asset-oriented checklist** for each asset:
+
+| Criteria         | Description                                  |
+|------------------|----------------------------------------------|
+| Confidentiality  | Encryption, authentication, access control   |
+| Integrity        | Data consistency, snapshot support, checksums|
+| Availability     | Multi-AZ, redundancy, auto-scaling           |
+| Access Control   | IAM, Security Groups, ACLs                   |
+| Encryption       | At-rest and in-transit encryption            |
+| Auditing         | CloudTrail, logs, alerts                     |
+
+---
+
+## Sample Output Table
+
+| Cloud Provider | Asset Type | Asset ID  | Encrypted | Access Control  | Risk Level | Comments         |
+|----------------|------------|-----------|-----------|------------------|------------|------------------|
+| AWS            | EBS Volume | vol-abc   | Yes       | IAM Policy       | Medium     | Used by EC2      |
+| AWS            | EFS        | fs-xyz    | Yes       | Security Group   | Low        | Multi-AZ mount   |
+| Azure          | File Share | datafiles | Yes       | Shared Key       | Medium     | Quota 1TB        |
 
 ---
 
 ## Result
-
-Successfully performed asset-oriented risk assessment of storage assets in AWS and Azure and implemented suitable security contro
